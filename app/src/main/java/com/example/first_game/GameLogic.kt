@@ -1,6 +1,5 @@
 package com.example.first_game
 
-// 1. Чертеж монстра
 data class Monster(
     val name: String,
     val maxHp: Int,
