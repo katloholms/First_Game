@@ -32,6 +32,7 @@ class MainActivity : ComponentActivity() {
 //Экраны
 enum class GameState(){
     SETUP,  //Главное меню
+    INVENTORY, //Инвентарь
     BATTLE, //Сама игра
     LOSS //Поражение
 }
@@ -125,7 +126,7 @@ fun GameScreen() {
                     Text(text = "⚔️ Атаковать")
                 }
                 Button(onClick = {
-
+                    gameState = GameState.INVENTORY
                 }) {
                     Text("Инвентарь")
                 }
@@ -151,6 +152,13 @@ fun GameScreen() {
                     gameState = GameState.BATTLE
                 }) {
                     Text("Перезапуск")
+                }
+            }
+            GameState.INVENTORY -> {
+                Button(onClick = {
+                    gameState = GameState.BATTLE
+                }) {
+                    Text("Вернуться в бой")
                 }
             }
         }
