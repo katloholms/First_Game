@@ -88,7 +88,7 @@ fun GameScreen() {
             }
             GameState.BATTLE -> {
                 // Статы Героя
-                Text(text = "Герой: Link (Lvl $level)", fontSize = 24.sp)
+                Text(text = "Герой: $tempName (Lvl $level)", fontSize = 24.sp)
                 Text(text = "HP: $playerHp | Зелья: $potions", fontSize = 18.sp)
 
                 Text(text = "\n--- VS ---\n")
@@ -124,6 +124,11 @@ fun GameScreen() {
                 }) {
                     Text(text = "⚔️ Атаковать")
                 }
+                Button(onClick = {
+
+                }) {
+                    Text("Инвентарь")
+                }
 
                 // Кнопка "Найти нового врага" (показываем, только если монстр мертв)
                 if (monsterHp <= 0) {
@@ -137,11 +142,16 @@ fun GameScreen() {
                     }
                 }
                 if (playerHp <= 0){
-
+                    gameState = GameState.LOSS
                 }
             }
             GameState.LOSS -> {
-
+                Button(onClick = {
+                    playerHp = 100
+                    gameState = GameState.BATTLE
+                }) {
+                    Text("Перезапуск")
+                }
             }
         }
     }
